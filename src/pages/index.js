@@ -101,19 +101,21 @@ console.log('count',count)
                             {name:'total words', value:kpiData.total},
                             {name:'learned words',value:kpiData.learned},
                             {name:'not started to learn',value:kpiData.pending},
-                            {name:'words in progress',value:kpiData.inProgress},
-                            {name:'day streak',value: count},
                         ].map(i=>
                             <Col span={4}>
                                 <Kpi {...i}/>
                             </Col>
                         )}
+                    </Grid>
+                    <Grid>
+                        {[
+                        {name:'words in progress',value:kpiData.inProgress},
+                        {name:'day streak',value: count},
+                        ].map(i=>
                         <Col span={4}>
-                            <Kpi/>
+                            <Kpi {...i}/>
                         </Col>
-                        <Col span={4}>
-                            <Kpi/>
-                        </Col>
+                        )}
                     </Grid>
                 </Elem>
                 <Elem grow={0}>
