@@ -109,8 +109,8 @@ console.log('count',count)
                     </Grid>
                     <Grid>
                         {[
-                        {name:'words in progress',value:kpiData.inProgress},
-                        {name:'day streak',value: count},
+                            {name:'words in progress',value:kpiData.inProgress},
+                            {name:'day streak',value: count},
                         ].map(i=>
                         <Col span={4}>
                             <Kpi {...i}/>

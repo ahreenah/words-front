@@ -55,6 +55,7 @@ top:100%;
 display:none !important;
 z-index:100;
 right:0;
+    box-shadow: 1px 1px 3px #707070, inset 2px -2px 2px #808080, inset -2px 2px 2px #f0f0f0;
 `
 
 function TrainingStats(data){
