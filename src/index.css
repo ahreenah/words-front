@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height:100%;
+  box-shadow: inset 0px 4px 150px #D9D9D9;
+  color:#707070;
+}
+
+html{
+  height:100%;
+}
+
+.dictionaries{
+  padding: 12px 0 10px !important;
+  /* padding-top: 12px !important;
+  padding-bottom: 12px !important;  */
+}
+
+.nav>li{
+  cursor:default;
+}
+.nav>li>a:hover{
+  background-color: #00000000 !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.inp{
+  padding:20
+}
+
+.auth{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: кув;
+  background: #efefef;
+  /* border: 2px solid #EAEAEA; */
+  /* box-sizing: border-box; */
+  box-shadow: -19px 16px 20px rgba(0, 0, 0, 0.25), inset 7px -7px 17px rgba(0, 0, 0, 0.25), inset -4px 4px 10px 5px #ffffff;
+  border-radius: 20px;
+  margin: auto;
+}
+.auth *{
+  margin-bottom:10px;
+}
+
+.login-caption{
+  font-size: 30px;
+}
+
+input{
+  outline:none;
+  color:#707070;
+}
+.navbarInnner{
+
+  box-shadow: inset 2px -2px 5px rgba(0, 0, 0, 0.25), inset -2px 2px 5px #ffffff;
+    /* background-image: linear-gradient(0deg, #afafaf, #efefef); */
+    background: #efefef;
+}
+
+.word{
+  display: flex;
+  padding:10px;
+  border-radius:10px;
+  box-shadow: inset 2px -2px 5px rgba(0, 0, 0, 0.25), inset -2px 2px 5px #ffffff;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.word div{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-red{
+  color:white;
+  border:none;
+  font-size:18px;
+  line-height:2px;
+  width: 114px;
+  height: 48px;
+
+  background: linear-gradient(180deg, #DB2B04 0%, #CD2600 100%);
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.25), inset 0px -2px 4px rgba(0, 0, 0, 0.25), inset 0px 3px 3px rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+.btn-green{
+  color:white;
+  border:none;
+  width: 114px;
+  font-size:18px;
+  height: 48px;
+  background: linear-gradient(180deg, #00E000 0%, #00CD00 100%);
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.25), inset 0px -2px 4px rgba(0, 0, 0, 0.25), inset 0px 3px 3px rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+
+.space-around{
+  justify-content: space-around;
+  display: flex;
+}
+
+.delete-wrapper{
+  width:247px;
+}
+
+.delete-wrapper .row::after{all:unset}
+.delete-wrapper .row{margin-left:0};
+.delete-wrapper .row::before{all:unset}
