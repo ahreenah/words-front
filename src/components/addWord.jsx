@@ -14,7 +14,7 @@ import {
     gql
   } from "@apollo/client";
 import Button from "../components/button";
-import Field from  '../components/field';
+import Field from  '../baseComponents/field';
 import AuthContext from "../context/authContext";
 import styled from "styled-components";
 

@@ -6,7 +6,7 @@ import { useState } from "react"
 
 export default function({wordsNum, onStart, name, stats, onChangeSearch}){
     let [statsShown, setStatsShown] = useState(false);
-    return <div className="navbar">
+    return <div className="navbar" style={{position:'sticky', top:67}}>
         <div className="navbar-inner" style={{height:1000,maxHeight:statsShown?272:42, transition:'0.6s', overflow:"hidden"}}>
             <div style={{display:'flex', width:'100%', alignItems:'center'}}> 
                 <span className="brand" style={{display:'flex'}}>

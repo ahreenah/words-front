@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height:100%;
-  box-shadow: inset 0px 4px 150px #D9D9D9;
+  box-shadow: inset 0px 4px 40px #D9D9D9;
   color:#707070;
 }
 
@@ -57,7 +57,17 @@ code {
 
 .login-caption{
   font-size: 30px;
+  width:calc(100% + 20px);
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
 }
+.login-caption .switch{
+  color:#909090;
+  font-size: 1.6rem;
+  margin-left: auto;
+}
+
 
 input{
   outline:none;

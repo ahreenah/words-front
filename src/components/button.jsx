@@ -18,6 +18,9 @@ let StyledButton = styled.button`
     font-size: 28px; 
     color: #FFFFFF;
     transition:0.2s;
+    :disabled{
+        opacity:.5;
+    }
     ${props=>props.red?'background: linear-gradient(180deg, #DB2B04 0%, #CD2600 100%);':null};
     :hover{
         box-shadow: 0px 0px 1px rgba(0, 0, 0, 0), inset 0px -2px 4px rgba(255, 255, 255, 0.0), inset 0px 3px 3px rgba(0, 0, 0, 0.0);
@@ -27,7 +30,7 @@ let StyledButton = styled.button`
     }
 `
 
-export default function Button({onClick,text, red}){
-    return <StyledButton onClick={onClick} red={red} text={'login'} value={text}>{text}</StyledButton>
-}
+export default function Button({onClick,text, red, disabled}){
+    return <StyledButton disabled={disabled} onClick={onClick} red={red} text={'login'} value={text}>{text}</StyledButton>
+} 
 

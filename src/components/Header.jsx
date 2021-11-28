@@ -20,10 +20,16 @@ export default function Header({onLogin}){
             <li onClick={()=>{console.log(onLogin);onLogin()}}><a>Login</a></li>
         </ul> )
     return <>
-    <div className="navbar">
+    <div className="navbar" style={{
+                position:'sticky',
+                marginBottom:0,
+                paddingBottom:20,
+                backgroundColor:'#f2f2f2',
+                zIndex:3,
+                top:0}}>
         <div className="navbar-inner" style={{
                 boxShadow: 'inset 2px -2px 5px rgba(0, 0, 0, 0.25), inset -2px 2px 5px #ffffff',
-                background: '#efefef'}}>
+                background: '#efefef',}}>
             <div className="container">
         
                

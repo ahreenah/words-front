@@ -1,6 +1,17 @@
 .App {
   /* text-align: center;  */
   max-width:100vw;
+  background-color: #f2f2f2;
+}
+
+.root {
+  /* text-align: center;  */
+  /* max-width:100vw; */
+  background-color: #f2f2f2;
+}
+
+body{
+  background-color: #f2f2f2;;
 }
 
 .App-logo {
@@ -34,7 +45,7 @@
 .authWrapper{
   width: 100vw;
   height: 100vh;
-  z-index:1;
+  z-index:5;
   top: 0;
   left: 0;
   position: absolute;
@@ -177,4 +188,24 @@
 }
 .rmdp-day-picker {
   padding:4px 12px !important;
+}
+
+.row-fluid .span4{
+  width:31% !important;
+}
+.span4:nth-child(3n+1){
+  margin-left: 0;
+}
+
+.span6{
+  width:calc(50% - 12px) !important;
+}
+
+.span6:nth-child(2n+1){
+  margin-left: 0;
+}
+@media(max-width:870px){
+  .hero-unit{
+    padding:24px;
+  }
 }

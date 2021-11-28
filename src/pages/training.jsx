@@ -2,12 +2,13 @@ import { useParams } from "react-router";
 import Styled from "styled-components";
 import {gql, useQuery, useMutation} from '@apollo/client'
 import { useEffect, useState } from "react";
-import Field from '../components/field';
+import Field from '../baseComponents/field';
 import Next from '../assets/images/next.svg';
 import TrainingStats from '../components/trainingStats'
 import Spelling from './trainings/spelling.jsx'
 import ChooseSpelling from './trainings/chooseSpelling'
 import Pairs from './trainings/pairs'
+import Spinner from '../baseComponents/spinner'
 
 let Wpapper = Styled.div`
 display:flex;
@@ -43,6 +44,12 @@ const WORD_SET = gql`
                     word
                     translation
                     id
+                    trainings{
+                        spelling
+                        chooseSpelling
+                        chooseTranslation
+                        
+                    }
                 }
             }
         }`
@@ -84,7 +91,12 @@ export default function Training1(){
         refetch()
         // setTimeout(setSa)
     },[setId])
-    words=data?.wordSet?.wordsList.map(i=>({...i,correct:false}));
+
+    words=data?.wordSet?.wordsList
+        .map(i=>({...i,correct:false}))
+        .sort((a,b)=>a.trainings[trainingType]-b.trainings[trainingType])
+        .filter((i,num)=>num<5);
+        console.log('processed words:',words)
     let [w,sw] = useState([])
     let [wordNum,setWordNum]=useState(0)
     let [userInput,setUserInput]=useState('')
@@ -165,5 +177,5 @@ export default function Training1(){
             </>
         // return 
     }
-    return 'loading'
+    return <Spinner></Spinner>
 }

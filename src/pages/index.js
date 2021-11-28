@@ -9,6 +9,7 @@ import {Calendar} from 'react-multi-date-picker'
 import {gql, useQuery} from "@apollo/client";
 import {Row, Column, Elem} from '../baseComponents/Flex'
 import DashboardTop from '../components/DashboardTop'
+import {Min,Max} from "../baseComponents/Width";
 
 const STATS_QUERY = gql`
     query stats{
@@ -29,6 +30,12 @@ export default function({onLogin}){
         if(localStorage.token) {
             console.log('stats data:', data);
             if (data && data.stats){
+                console.log('data in',{
+                    inProgress:data.stats.inProgress,
+                    learned:data.stats.learned,
+                    pending:data.stats.pending,
+                    total:data.stats.inProgress+data.stats.learned+data.stats.pending
+                })
                 setDates(data.stats.trainingDates.map(i => new Date(i)))
                 setKpiData({
                     inProgress:data.stats.inProgress,
@@ -91,40 +98,50 @@ console.log('count',count)
 
     const [values, setValues] = useState([today, tomorrow])
 
+    let KpiGrid = ()=><>{[
+        {name:'total words', value:kpiData.total},
+        {name:'learned words',value:kpiData.learned},
+        {name:'not started to learn',value:kpiData.pending},
+        {name:'words in progress',value:kpiData.inProgress},
+        {name:'day streak',value: count},
+    ].map(i=>
+        <Col span={4} edge={[{width:578,v:6}]}>
+            <Kpi name={i.name} value={i.value??0}/>
+        </Col>
+    )}</>
     
     return <div className="w-100">
             <DashboardTop onLogin={onLogin} loggedIn={loggedIn}/>
-            {loggedIn &&<Row gap={20}>
-                <Elem grow={1}>
-                    <Grid>
-                        {[
-                            {name:'total words', value:kpiData.total},
-                            {name:'learned words',value:kpiData.learned},
-                            {name:'not started to learn',value:kpiData.pending},
-                        ].map(i=>
-                            <Col span={4}>
-                                <Kpi {...i}/>
-                            </Col>
-                        )}
-                    </Grid>
-                    <Grid>
-                        {[
-                            {name:'words in progress',value:kpiData.inProgress},
-                            {name:'day streak',value: count},
-                        ].map(i=>
-                        <Col span={4}>
-                            <Kpi {...i}/>
-                        </Col>
-                        )}
-                    </Grid>
-                </Elem>
-                <Elem grow={0}>
-                     <Calendar
-                        multiple
-                        value={dates}
-                        onChange={setValues}
-                        />
-                </Elem>
+            {loggedIn &&<Row gap={20} edge={850}>
+                <Min width={871}>
+                    <Elem grow={1}>
+                        <Grid>
+                            <KpiGrid/>
+                        </Grid>
+                    </Elem>
+                </Min>
+                <Max width={870}>
+                    <Min width={391}>
+                        <Elem grow={1}>
+                            <Grid>
+                                <KpiGrid/>
+                            </Grid>
+                        </Elem>
+                    </Min>
+                    <Max width={390}>
+                        <KpiGrid/>
+                    </Max>
+                </Max>
+                <Min width={871}>
+                    <Elem grow={0}>
+                        <Calendar
+                            multiple
+                            value={dates}
+                            onChange={setValues}
+                            />
+                    </Elem>
+                </Min>
+                {JSON.stringify(kpiData.inProgress)}
             </Row>}
     </div>
 }

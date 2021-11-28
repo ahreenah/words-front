@@ -1,6 +1,6 @@
 import Styled from "styled-components";
 import { useEffect, useState } from "react";
-import Field from '../../components/field';
+import Field from '../../baseComponents/field';
 import Next from '../../assets/images/next.svg';
 
 let Wpapper = Styled.div`
@@ -45,7 +45,8 @@ export default function Spelling({words,wordNum,correct,checkAnswer, passed}){
             correct={correct==1} 
             incorrect={correct==2} 
             onChange={setUserInput}
-            onKeyDown={e=>{console.log(3);if(e.key=='Enter'){
+            
+            onKeyPress={e=>{console.log(3);if(e.key=='Enter'){
                 checkAnswerCb()
             }}}></Field>
         <BackButton src={Next} onClick={checkAnswerCb} />

@@ -13,17 +13,18 @@ let Add = styled.div`
     align-items:center;
     padding-left:20px;
     font-size:18px;
+    margin-bottom:10px;
 `
 
 export default ({words, addWord, setDeletingWord})=><>
     <div style={{display:'flex',flexDirection:'column-reverse'}}>
-        <Add onClick={()=>{addWord(true)}}>
-            Add word
-            <img style={{marginLeft:'auto',marginRight:20}} src={AddIcon}/>
-        </Add>
         {words.map((i,num)=>(<Word key={num} word={i} onDelete={()=>{
             setDeletingWord(i.id)
         }}></Word>))}
+        {/* <Add onClick={()=>{addWord(true)}}>
+            Add word
+            <img style={{marginLeft:'auto',marginRight:20}} src={AddIcon}/>
+        </Add> */}
     </div>
     {words.length<3&&<NotEnoughWords>
         Trainings are not available for word sets with less than 10 words.    

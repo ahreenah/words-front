@@ -16,7 +16,7 @@ import {
 import trainings from "../utils/trainings";
 import {useHistory } from 'react-router-dom';
 import Button from "../components/button";
-import Field from  '../components/field';
+import Field from  '../baseComponents/field';
 import AuthContext from "../context/authContext";
 import Styled from "styled-components";
 import languages from '../utils/languages.json'

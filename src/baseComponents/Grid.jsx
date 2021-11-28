@@ -1,11 +1,20 @@
+import styled from "styled-components"
+
+
+let EdgeGrid = styled.div`
+
+`
+
 export default function({children}){
-    return <div className="row-fluid">
+    return <EdgeGrid className="row-fluid">
         {children}
-    </div>
+    </EdgeGrid>
 }
 
-export function Col({children, span}){
-    return <div className={"span"+span}>
+
+
+export function Col({children, span, style}){
+    return <div className={"span"+span} style={style} >
         {children}
     </div>
 }

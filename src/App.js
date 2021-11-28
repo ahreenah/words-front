@@ -43,7 +43,8 @@ console.log(ApolloClient)
 
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:8000/graphql',
+  // uri:'http://localhost:8000/graphql',
+  uri: 'http://194.37.81.206/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
