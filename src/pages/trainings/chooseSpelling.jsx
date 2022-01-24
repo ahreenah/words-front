@@ -19,11 +19,13 @@ export default function ChooseSpelling({words,wordNum,checkAnswer, reversed}){
             spelling:reversed?i.word:i.translation, correct:false
         })),
     )
+    
     function check(v,num){
         checkAnswer(v.correct);
         setSelected(num)
     }
     useEffect(()=>{
+        setVariants (variants.sort((a,b)=>Math.random()>0.5?1:-1))
         setSelected(-1)
         // alert(words[wordNum].translation)
         setVariants(variants.map(i=>({...i,correct:i.spelling==words[wordNum][reversed?'word':'translation']})))

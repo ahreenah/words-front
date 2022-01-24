@@ -113,6 +113,7 @@ export default function Dictionaries(){
     let [search, setSearch] = useState('')
     let [multiAdd, setMultiAdd] = useState(false)
     let [loadedWordSets, setLoadedWordSets] = useState(false);
+    let lastWordSet = wordSets.length?wordSets[wordSets.length-1]:null
 
     let closePopup = (withoutReload=false)=>{
         setTimeout(async ()=>{
@@ -162,7 +163,13 @@ export default function Dictionaries(){
     let WordsC = ()=> wordSet!=-1?
     <> 
         <div style={{position:"sticky", top:59, zIndex:2, background:"#f2f2f2"}}>
-            <WordSetHeader stats={stats} wordsNum={words.length} onStart={()=>setChoosingTraning(true)} name={wordSets.filter(i=>i.id==wordSet)[0].name} onChangeSearch={(v=>setSearch(v))}/>
+            <WordSetHeader 
+                stats={stats} 
+                wordsNum={words.length} 
+                onStart={()=>setChoosingTraning(true)} 
+                name={wordSets.filter(i=>i.id==wordSet)[0].name} 
+                search={search}
+                onChangeSearch={(v=>setSearch(v))}/>
             {multiAdd ?<AddInline onAdd={async (spelling,translation)=>{
                 // alert(spelling,translation)
                 await setAddWordData({spelling,translation});
@@ -190,15 +197,18 @@ export default function Dictionaries(){
 
 
     return (<>
-        {addingWordSet && <Popup onClose={res=>{
-            // alert(res.data.createWordSet.wordSet.name);
-            if(res)
-            setWordSets([...wordSets,{
-                name:res.data.createWordSet.wordSet.name, 
-                id:res.data.createWordSet.wordSet.id
-            }])
-            closePopup();
-        }}/>}
+        {addingWordSet && 
+            <Popup 
+                onClose={res=>{
+                    if(res)
+                    setWordSets([...wordSets,{
+                        name:res.data.createWordSet.wordSet.name, 
+                        id:res.data.createWordSet.wordSet.id
+                    }])
+                    closePopup();
+                }}
+                lang={lastWordSet?.language}
+            />}
         {choosingTraining && <ChooseTraining onClose={closePopup} wordSet={wordSet} />}
         {!!deletingWord && 
             <DeleteWord 

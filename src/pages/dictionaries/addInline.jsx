@@ -15,6 +15,7 @@ export default function AddInline({onAdd}){
         if(event.key === 'Enter'){
             console.log('onE')
             // alert(word,translation)
+            // w.focus();
             console.log('w',w)
             // setTimeout(()=>w.current.focus(),10)
             onAdd(word,translation)
@@ -22,7 +23,7 @@ export default function AddInline({onAdd}){
             setTranslation('')
           }
     }
-    useEffect(()=>setTimeout(()=>{ if(w && word.length==0) {console.log('w:',w?.current?.focus());}},10))
+    useEffect(()=>setTimeout(()=>{ if(w && word.length==0) {console.log('w:',w?.current?.focus());}},10) , [translation])
     return <Message>
         {/* <form onSubmit={()=>{setWord('')}}> */}
             <Row gap={10}>

@@ -1,5 +1,6 @@
 import React from "react"
 import Styled from "styled-components"
+import {gql, useMutation} from '@apollo/client'
 let Wrapper=Styled.div`
   display: flex;
   padding:10px;
@@ -58,7 +59,26 @@ right:0;
     box-shadow: 1px 1px 3px #707070, inset 2px -2px 2px #808080, inset -2px 2px 2px #f0f0f0;
 `
 
+const SAVE_MUT = gql`
+    mutation SaveTrainingResults($list:[TrainWordResult],$training:Int){
+        saveTrainingResults(training:$training, list:$list){
+            ok
+            message
+        }
+    }
+`
+
 function TrainingStats(data){
+  const [requestClear,{loading:loadingSave, error:errorSave, data:dataSave}] = useMutation(SAVE_MUT,{
+    variables:{
+        list:[1,2,3,4].map(i=>({
+            word:data.word.id,
+            training:i,
+            result:false
+        })),
+    }
+})
+  let onClear = data.onClear
   data = data.data;
   // alert(JSON.stringify(data))
   // alert(JSON.stringify(data))
@@ -80,9 +100,13 @@ function TrainingStats(data){
       opacity: .5
     }}></div>
     <StatsPopup>
-      {list.map(i=><div>
-        {i}:{data[i]}
-    </div>)}
+      {list.map(i=>(
+        <div>
+          {i}:{data[i]}
+        </div>)
+      )}
+      <button className="btn" onClick={()=>{
+        requestClear();onClear()}}>clear</button>
     </StatsPopup>
   </Stats>
 }
@@ -99,7 +123,9 @@ export default function word({word, onClick, onDelete}){
                 {word.translation}
             </div>
             {/* {JSON.stringify(trainings)} */}
-            <TrainingStats data={trainings}/>
+            <TrainingStats data={trainings} word={word} onClear={()=>{
+              console.log(word)
+            }}/>
             <i className="icon-remove" onClick={onDelete}></i>
         </Wrapper>
     )

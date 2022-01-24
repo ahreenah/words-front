@@ -129,7 +129,15 @@ console.log('count',count)
                         </Elem>
                     </Min>
                     <Max width={390}>
-                        <KpiGrid/>
+                    {[
+        {name:'total words', value:kpiData.total},
+        {name:'learned words',value:kpiData.learned},
+        {name:'not started to learn',value:kpiData.pending},
+        {name:'words in progress',value:kpiData.inProgress},
+        {name:'day streak',value: count},
+    ].map(i=>
+            <Kpi name={i.name} value={i.value??0}/>
+    )}
                     </Max>
                 </Max>
                 <Min width={871}>
@@ -141,7 +149,6 @@ console.log('count',count)
                             />
                     </Elem>
                 </Min>
-                {JSON.stringify(kpiData.inProgress)}
             </Row>}
     </div>
 }

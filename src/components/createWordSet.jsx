@@ -36,7 +36,7 @@ const CREATE_WORD_SET = gql`
 `
 
 
-export default function({onClose}){
+export default function({onClose, lang}){
     let [opacity, setOpacity]=useState(0);
 
     useEffect(()=>{
@@ -47,7 +47,7 @@ export default function({onClose}){
         }
     },[])
     let [name,setName] = useState('')
-    let [language, setLanguage]=useState('')
+    let [language, setLanguage]=useState(lang??'')
     let [open,setOpen] = useState(false)
     
     let auth = useContext(AuthContext)

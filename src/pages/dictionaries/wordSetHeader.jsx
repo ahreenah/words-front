@@ -4,7 +4,7 @@ import { StartButton } from "./StartButton";
 import Pie from "../../components/charts/pie"
 import { useState } from "react"
 
-export default function({wordsNum, onStart, name, stats, onChangeSearch}){
+export default function({wordsNum, onStart, name, stats, onChangeSearch, search}){
     let [statsShown, setStatsShown] = useState(false);
     return <div className="navbar" style={{position:'sticky', top:67}}>
         <div className="navbar-inner" style={{height:1000,maxHeight:statsShown?272:42, transition:'0.6s', overflow:"hidden"}}>
@@ -13,10 +13,9 @@ export default function({wordsNum, onStart, name, stats, onChangeSearch}){
                     {name}
                 </span>
                 {wordsNum>=3&&<StartButton onClick={onStart} />}
-                
-
-            
-                <SearchForm style={{ marginTop: 0 }} onChangeSearch={onChangeSearch}/>
+                {/* s:{search} */}
+          
+                {/* <SearchForm style={{ marginTop: 0 }} search={search} onChangeSearch={onChangeSearch}/> */}
                 <OpenChartButton 
                     opened={statsShown}
                     onClick={() => setStatsShown(v => !v)} />

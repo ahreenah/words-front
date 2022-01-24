@@ -31,24 +31,31 @@ let BackButton = Styled.img`
 
 export default function Spelling({words,wordNum,correct,checkAnswer, passed}){
     let [userInput,setUserInput]=useState('')
+    let [correctAnswer, setCorrectAnswer] = useState('')
     function checkAnswerCb(){
         checkAnswer(userInput.toUpperCase()==words[wordNum].word.toUpperCase());
+        setCorrectAnswer(words[wordNum].word);
         setTimeout(()=>{
             setUserInput('');
-
+            setCorrectAnswer('');
         },1500)
     }
     return <>
         <div>{words[wordNum].translation}</div>
+        <div style={{height:30}}>{correctAnswer}</div>
         <Field 
             value={userInput} 
             correct={correct==1} 
             incorrect={correct==2} 
             onChange={setUserInput}
             
-            onKeyPress={e=>{console.log(3);if(e.key=='Enter'){
-                checkAnswerCb()
-            }}}></Field>
+            onKeyPress={e=>{
+                console.log(3);
+                if(e.key=='Enter'){
+                    checkAnswerCb()
+                }
+                console.log(e)
+            }}></Field>
         <BackButton src={Next} onClick={checkAnswerCb} />
     </>
 }
